@@ -211,22 +211,22 @@ const StepDesc = styled.p`
 const steps = [
   {
     n: '1',
-    title: 'Vamos conversar',
+    title: 'Conversa inicial',
     desc: 'Você conta sobre o seu negócio e o que precisa resolver. Sem formulário complicado e sem compromisso, é só um papo pra entender você.',
   },
   {
     n: '2',
-    title: 'Você recebe uma proposta clara',
+    title: 'Proposta clara',
     desc: 'Mostramos exatamente o que será feito, em quanto tempo e quanto custa. Tudo combinado antes de começar, sem letra miúda.',
   },
   {
     n: '3',
-    title: 'Construímos junto com você',
-    desc: 'Você acompanha o projeto ganhando forma e pode pedir ajustes pelo caminho. Nada de sumir e aparecer só no final.',
+    title: 'Construção',
+    desc: 'Acompanhe o projeto ganhando forma e peça ajustes pelo caminho. Você aprova cada etapa antes do projeto ir pro ar.',
   },
   {
     n: '4',
-    title: 'Seu projeto no ar, com apoio',
+    title: 'Entrega e suporte',
     desc: 'Entregamos tudo funcionando, te ensinamos a usar e continuamos por perto caso surja qualquer dúvida depois.',
   },
 ]
@@ -238,11 +238,11 @@ export function Process() {
     <Section id="process">
       <Inner>
         <Reveal>
-        <SectionLabel>Como funciona</SectionLabel>
-        <Title>Da primeira conversa ao projeto no ar,<br />você sabe cada passo</Title>
-        <Subtitle>
-          Um processo simples e transparente, pensado pra você não precisar entender de tecnologia.
-        </Subtitle>
+          <SectionLabel>Como funciona</SectionLabel>
+          <Title>Da primeira conversa ao projeto no ar,<br />você sabe cada passo</Title>
+          <Subtitle>
+            Um processo simples e transparente, pensado pra você não precisar entender de tecnologia.
+          </Subtitle>
         </Reveal>
         <Steps ref={ref}>
           <ConnectorLine $visible={inView} />

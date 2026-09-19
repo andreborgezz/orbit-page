@@ -260,15 +260,14 @@ export function FinalCTA() {
             <Reveal delay={360}>
               <Actions>
                 <Btn href={whatsapp} target="_blank" rel="noopener noreferrer">
-                  Iniciar projeto <BtnArrow>→</BtnArrow>
+                  Iniciar projeto
                 </Btn>
               </Actions>
             </Reveal>
             <Reveal delay={460}>
               <Perks>
-                <Perk>Conversa gratuita</Perk>
-                <Perk>Sem compromisso</Perk>
                 <Perk>Resposta em até 24h</Perk>
+                <Perk>Conversa gratuita</Perk>
               </Perks>
             </Reveal>
           </Content>

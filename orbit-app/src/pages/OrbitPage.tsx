@@ -1,6 +1,7 @@
 import { NavBar } from '../components/NavBar'
 import { Hero } from '../components/Hero'
 import { Audience } from '../components/Audience'
+import { Services } from '../components/Services'
 import { Process } from '../components/Process'
 import { FAQ } from '../components/FAQ'
 import { About } from '../components/About'
@@ -13,6 +14,7 @@ export function OrbitPage() {
       <NavBar />
       <Hero />
       <Audience />
+      <Services />
       <Process />
       <FAQ />
       <About />

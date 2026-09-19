@@ -4,6 +4,7 @@ import orbitIcon from '../assets/icon-png.jpg'
 
 const links = [
   { id: 'audience', label: 'Para quem' },
+  { id: 'services', label: 'Serviços' },
   { id: 'process', label: 'Como funciona' },
   { id: 'faq', label: 'FAQ' },
   { id: 'about', label: 'Sobre' },
@@ -70,9 +71,9 @@ const LogoText = styled.span`
 const NavLinks = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: clamp(1.25rem, 2.4vw, 2rem);
 
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `
@@ -145,7 +146,7 @@ const MenuBtn = styled.button`
   cursor: pointer;
   position: relative;
 
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     display: block;
   }
 
@@ -176,7 +177,7 @@ const Bar = styled.span<{ $open: boolean; $pos: 'top' | 'mid' | 'bot' }>`
 const Panel = styled.div<{ $open: boolean }>`
   display: none;
 
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;

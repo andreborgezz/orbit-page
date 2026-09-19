@@ -180,40 +180,6 @@ const HighlightLabel = styled.p`
   margin: 0;
 `
 
-const StackLabel = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #233047;
-  opacity: 0.5;
-  margin: 0 0 0.75rem;
-`
-
-const Tags = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-`
-
-const Tag = styled.span`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #233047;
-  background: rgba(35, 48, 71, 0.08);
-  border: 1px solid rgba(35, 48, 71, 0.12);
-  border-radius: 6px;
-  padding: 0.3rem 0.75rem;
-  transition: transform 0.2s ease, background 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    background: rgba(35, 48, 71, 0.14);
-  }
-`
-
 const highlights = [
   { value: '2+ anos', label: 'Programando e construindo projetos' },
   { value: 'Faculdade de Engenharia de Sorocaba', label: 'Cursando Análise e Desenvolvimento de Sistemas' },

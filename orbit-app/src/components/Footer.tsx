@@ -206,10 +206,10 @@ const MailIcon = () => (
 
 // troca pelos seus links reais
 const socials = [
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/seu-perfil', icon: <LinkedinIcon /> },
-  { label: 'GitHub', href: 'https://github.com/seu-usuario', icon: <GithubIcon /> },
-  { label: 'Instagram', href: 'https://instagram.com/seu-perfil', icon: <InstagramIcon /> },
-  { label: 'E-mail', href: 'mailto:contato@orbitagency.dev', icon: <MailIcon /> },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/andre-borgess/', icon: <LinkedinIcon /> },
+  { label: 'GitHub', href: 'https://github.com/andreborgezz', icon: <GithubIcon /> },
+  { label: 'Instagram', href: 'https://instagram.com/orbitdev.io', icon: <InstagramIcon /> },
+  { label: 'E-mail', href: 'mailto:orbit.websolve@gmail.com', icon: <MailIcon /> },
 ]
 
 export function Footer() {
@@ -217,57 +217,58 @@ export function Footer() {
     <FooterEl>
       <Inner>
         <Reveal>
-        <Top>
-          <Brand>
-            <Logo href="#">
-              <LogoImg src={orbitIcon} alt="" />
-              <LogoText>Orbit</LogoText>
-            </Logo>
-            <Description>
-              Sites, lojas e sistemas sob medida para quem leva o próprio negócio a sério.
-            </Description>
-            <Tagline>Building software.</Tagline>
-          </Brand>
+          <Top>
+            <Brand>
+              <Logo href="#">
+                <LogoImg src={orbitIcon} alt="" />
+                <LogoText>Orbit</LogoText>
+              </Logo>
+              <Description>
+                Sites, lojas e sistemas sob medida para o seu negócio.
+              </Description>
+              <Tagline>Desenvolvimento de Software</Tagline>
+            </Brand>
 
-          <Column>
-            <ColumnTitle>Navegação</ColumnTitle>
-            <FooterLink href="#audience">Para quem</FooterLink>
-            <FooterLink href="#process">Como funciona</FooterLink>
-            <FooterLink href="#faq">FAQ</FooterLink>
-            <FooterLink href="#about">Sobre</FooterLink>
-          </Column>
+            <Column>
+              <ColumnTitle>Navegação</ColumnTitle>
+              <FooterLink href="#audience">Para quem</FooterLink>
+              <FooterLink href="#services">Serviços</FooterLink>
+              <FooterLink href="#process">Como funciona</FooterLink>
+              <FooterLink href="#faq">FAQ</FooterLink>
+              <FooterLink href="#about">Sobre</FooterLink>
+            </Column>
 
-          <Column>
-            <ColumnTitle>Legal</ColumnTitle>
-            <FooterLink href="/privacidade">Política de Privacidade</FooterLink>
-            <FooterLink href="/cookies">Política de Cookies</FooterLink>
-            <FooterLink href="/termos">Termos de Uso</FooterLink>
-          </Column>
+            <Column>
+              <ColumnTitle>Legal</ColumnTitle>
+              <FooterLink href="/privacidade">Política de Privacidade</FooterLink>
+              <FooterLink href="/cookies">Política de Cookies</FooterLink>
+              <FooterLink href="/termos">Termos de Uso</FooterLink>
+            </Column>
 
-          <Column>
-            <ColumnTitle>Social</ColumnTitle>
-            <Socials>
-              {socials.map((s) => (
-                <SocialLink
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  target={s.href.startsWith('http') ? '_blank' : undefined}
-                  rel="noopener noreferrer"
-                >
-                  {s.icon}
-                </SocialLink>
-              ))}
-            </Socials>
-          </Column>
-        </Top>
+            <Column>
+              <ColumnTitle>Social</ColumnTitle>
+              <Socials>
+                {socials.map((s) => (
+                  <SocialLink
+                    key={s.label}
+                    href={s.href}
+                    aria-label={s.label}
+                    target={s.href.startsWith('http') ? '_blank' : undefined}
+                    rel="noopener noreferrer"
+                  >
+                    {s.icon}
+                  </SocialLink>
+                ))}
+              </Socials>
+            </Column>
+          </Top>
         </Reveal>
 
         <Reveal delay={150}>
-        <Bottom>
-          <Copy>© {new Date().getFullYear()} Orbit — Todos os direitos reservados</Copy>
-          <Made>Feito por André Borges</Made>
-        </Bottom>
+          <Bottom>
+            <Copy>© {new Date().getFullYear()} Orbit — Todos os direitos reservados</Copy>
+            <Made>Feito por André Borges</Made>
+          </Bottom>
         </Reveal>
       </Inner>
     </FooterEl>

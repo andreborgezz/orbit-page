@@ -108,10 +108,10 @@ const Inner = styled.div`
   z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: clamp(2rem, 4vw, 6rem);
   align-items: center;
   width: 100%;
-  max-width: 1200px;
+  max-width: clamp(1000px, 85vw, 1400px);
   margin: 0 auto;
 
   @media (max-width: 900px) {
@@ -126,34 +126,29 @@ const Copy = styled.div``
 const Eyebrow = styled.p<{ $i?: number }>`
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.75rem;
   margin: 0 0 1.4rem;
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.75);
   font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(35, 48, 71, 0.8);
+  color: rgba(35, 48, 71, 0.75);
   ${rise}
 
+  // traço fino antes do texto
   &::before {
     content: '';
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #233047;
-    animation: ${ping} 2s ease-out infinite;
-    ${reduceMotion}
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
   }
 `
 
 const Headline = styled.h1<{ $i?: number }>`
   font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-size: clamp(2.2rem, 3.8vw, 4.5rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
@@ -180,13 +175,13 @@ const Accent = styled.span`
 
 const Sub = styled.p<{ $i?: number }>`
   font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 1.1vw, 1.25rem);
   font-weight: 400;
   line-height: 1.7;
   color: #233047;
   opacity: 0.72;
-  margin: 0 0 2.25rem;
-  max-width: 460px;
+  margin: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+  max-width: clamp(400px, 35vw, 560px);
   ${rise}
 
   @media (max-width: 900px) {
@@ -344,7 +339,7 @@ const IllustrationWrap = styled.div<{ $i?: number }>`
 const Stage = styled.div`
   position: relative;
   width: 100%;
-  max-width: 520px;
+  max-width: clamp(380px, 38vw, 650px);
   aspect-ratio: 1;
   display: flex;
   align-items: center;
@@ -404,7 +399,7 @@ const Float = styled.div<{ $delay?: number }>`
 const Illustration = styled.img`
   display: block;
   width: 100%;
-  max-width: 500px;
+  max-width: clamp(320px, 32vw, 550px);
   height: auto;
   margin: 0 auto;
   filter: drop-shadow(0 16px 48px rgba(35, 48, 71, 0.14));
@@ -560,17 +555,17 @@ export function Hero() {
 
       <Inner>
         <Copy>
-          <Eyebrow $i={0}>Desenvolvimento sob medida</Eyebrow>
+          <Eyebrow $i={0}>Sites e sistemas personalizados</Eyebrow>
           <Headline $i={1}>
-            Seu produto digital,<br />
-            <Accent>do zero ao deploy.</Accent>
+            Seu negócio merece<br />
+            <Accent>um site à altura.</Accent>
           </Headline>
           <Sub $i={2}>
             A Orbit transforma ideias em produtos funcionais. Trabalhamos com times e fundadores que precisam de código de qualidade, sem a burocracia de grandes agências.
           </Sub>
           <Buttons $i={3}>
             <PrimaryBtn href="#cta">
-              Iniciar projeto <Arrow>→</Arrow>
+              Iniciar projeto
             </PrimaryBtn>
             <SecondaryBtn href="#process">Ver como funciona</SecondaryBtn>
           </Buttons>
