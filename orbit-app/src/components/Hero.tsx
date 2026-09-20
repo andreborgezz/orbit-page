@@ -24,11 +24,6 @@ const float = keyframes`
   50%      { transform: translateY(-12px); }
 `
 
-const ping = keyframes`
-  0%   { box-shadow: 0 0 0 0 rgba(35, 48, 71, 0.45); }
-  70%  { box-shadow: 0 0 0 8px rgba(35, 48, 71, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(35, 48, 71, 0); }
-`
 
 const sheen = keyframes`
   0%, 100% { background-position: 0% 50%; }
