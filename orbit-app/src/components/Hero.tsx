@@ -559,10 +559,12 @@ export function Hero() {
             A Orbit transforma ideias em produtos funcionais. Trabalhamos com times e fundadores que precisam de código de qualidade, sem a burocracia de grandes agências.
           </Sub>
           <Buttons $i={3}>
-            <PrimaryBtn href="#cta">
+            <PrimaryBtn href="#cta" data-umami-event="Click Iniciar Projeto na Hero">
               Iniciar projeto
             </PrimaryBtn>
-            <SecondaryBtn href="#process">Ver como funciona</SecondaryBtn>
+            <SecondaryBtn href="#process" data-umami-event="Click Ver Como Funciona na Hero">
+              Ver como funciona
+            </SecondaryBtn>
           </Buttons>
           <TrustBar $i={4}>
             <TrustItem>Entrega ágil</TrustItem>

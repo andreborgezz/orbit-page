@@ -275,7 +275,7 @@ export function NavBar() {
             {l.label}
           </NavLink>
         ))}
-        <NavCta href="#cta">Entrar em contato</NavCta>
+        <NavCta href="#cta" data-umami-event="Click botão do NavBar">Entrar em contato</NavCta>
       </NavLinks>
 
       <MenuBtn
@@ -296,7 +296,7 @@ export function NavBar() {
             {l.label}
           </PanelLink>
         ))}
-        <PanelCta href="#cta" onClick={close}>
+        <PanelCta href="#cta" onClick={close} data-umami-event="Click botão do NavBar">
           Entrar em contato
         </PanelCta>
       </Panel>

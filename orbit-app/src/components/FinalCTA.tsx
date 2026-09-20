@@ -259,7 +259,7 @@ export function FinalCTA() {
             </Reveal>
             <Reveal delay={360}>
               <Actions>
-                <Btn href={whatsapp} target="_blank" rel="noopener noreferrer">
+                <Btn href={whatsapp} target="_blank" rel="noopener noreferrer" data-umami-event="WhatsApp CTA">
                   Iniciar projeto
                 </Btn>
               </Actions>

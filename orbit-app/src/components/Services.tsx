@@ -4,6 +4,9 @@ import styled from 'styled-components'
 import { spotlight, trackPointer } from '../lib/effects'
 import { Reveal } from './Reveal'
 
+// celular com tela curta (a maioria, com a barra do navegador aparecendo)
+const short = '@media (max-width: 600px) and (max-height: 760px)'
+
 const Section = styled.section`
   position: relative;
   overflow: hidden;
@@ -35,6 +38,15 @@ const Section = styled.section`
     background: radial-gradient(circle, rgba(200, 209, 217, 0.08), transparent 70%);
     pointer-events: none;
   }
+
+  // celular: seção compacta pra caber inteira na tela
+  @media (max-width: 600px) {
+    padding-block: 1.5rem;
+  }
+
+  ${short} {
+    padding-block: 1.1rem;
+  }
 `
 
 const Inner = styled.div`
@@ -54,6 +66,15 @@ const Header = styled.div`
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
   }
+
+  @media (max-width: 600px) {
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+
+  ${short} {
+    margin-bottom: 0.75rem;
+  }
 `
 
 const Title = styled.h2`
@@ -64,6 +85,14 @@ const Title = styled.h2`
   line-height: 1.1;
   color: #e6ebf0;
   margin: 0;
+
+  @media (max-width: 600px) {
+    font-size: 1.6rem;
+  }
+
+  ${short} {
+    font-size: 1.45rem;
+  }
 `
 
 const Sub = styled.p`
@@ -74,6 +103,16 @@ const Sub = styled.p`
   opacity: 0.8;
   margin: 0;
   max-width: 440px;
+
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  // em tela curta o subtítulo sai pra caber o card inteiro (o CTA de cada card continua)
+  ${short} {
+    display: none;
+  }
 `
 
 const Carousel = styled.div`
@@ -147,6 +186,17 @@ const IconBox = styled.div`
   background: rgba(200, 209, 217, 0.08);
   border: 1px solid rgba(200, 209, 217, 0.18);
   transition: background 0.35s ease, color 0.35s ease, transform 0.35s ease;
+
+  // celular: ícone pequeno ao lado do título
+  @media (max-width: 600px) {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: center;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    border-radius: 13px;
+  }
 `
 
 const Card = styled.article`
@@ -175,6 +225,21 @@ const Card = styled.article`
     grid-row: auto;
     height: auto;
     flex: 1;
+  }
+
+  // celular: ícone | título e "ideal" na primeira linha; a lista ocupa a folga
+  // e empurra o rodapé pra baixo, então o rodapé fica alinhado nos 3 slides
+  @media (max-width: 600px) {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    grid-template-rows: auto auto auto 1fr auto;
+    column-gap: 0.85rem;
+    padding: 1.15rem 1.1rem 1rem;
+    border-radius: 18px;
+  }
+
+  ${short} {
+    padding: 1rem 1rem 0.9rem;
   }
 
   @media (hover: hover) {
@@ -206,6 +271,19 @@ const CardTitle = styled.h3`
   letter-spacing: -0.02em;
   color: #e6ebf0;
   margin: 0 0 0.4rem;
+
+  @media (max-width: 600px) {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    font-size: 1.12rem;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  ${short} {
+    font-size: 1.05rem;
+  }
 `
 
 const Ideal = styled.p`
@@ -214,6 +292,19 @@ const Ideal = styled.p`
   font-weight: 600;
   color: #8aa2c9;
   margin: 0 0 1.1rem;
+
+  @media (max-width: 600px) {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    font-size: 0.76rem;
+    line-height: 1.35;
+    margin: 0.15rem 0 0;
+  }
+
+  ${short} {
+    font-size: 0.72rem;
+  }
 `
 
 const Desc = styled.p`
@@ -223,6 +314,20 @@ const Desc = styled.p`
   color: #c8d1d9;
   opacity: 0.82;
   margin: 0;
+
+  @media (max-width: 600px) {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-top: 0.95rem;
+  }
+
+  ${short} {
+    font-size: 0.84rem;
+    line-height: 1.5;
+    margin-top: 0.8rem;
+  }
 `
 
 const List = styled.ul`
@@ -233,6 +338,18 @@ const List = styled.ul`
   gap: 0.8rem;
   margin: 1.6rem 0 2rem;
   padding: 0;
+
+  @media (max-width: 600px) {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  ${short} {
+    gap: 0.4rem;
+    margin: 0.8rem 0;
+  }
 `
 
 const Item = styled.li`
@@ -250,22 +367,37 @@ const Item = styled.li`
     margin-top: 0.2rem;
     color: #8aa2c9;
   }
+
+  @media (max-width: 600px) {
+    font-size: 0.84rem;
+    line-height: 1.4;
+    gap: 0.6rem;
+
+    svg {
+      margin-top: 0.12rem;
+    }
+  }
+
+  ${short} {
+    font-size: 0.8rem;
+    line-height: 1.38;
+  }
 `
 
 const Foot = styled.div`
   margin-top: auto;
   padding-top: 1.4rem;
   border-top: 1px solid rgba(200, 209, 217, 0.12);
-`
 
-const Arrow = styled.span`
-  display: inline-block;
-  transition: transform 0.25s ease;
+  @media (max-width: 600px) {
+    grid-column: 1 / -1;
+    grid-row: 5;
+    margin-top: 0;
+    padding-top: 0.85rem;
+  }
 
-  @media (hover: hover) {
-    ${Card}:hover & {
-      transform: translateX(5px);
-    }
+  ${short} {
+    padding-top: 0.7rem;
   }
 `
 
@@ -278,6 +410,10 @@ const CardLink = styled.a`
   font-weight: 700;
   color: #e6ebf0;
   text-decoration: none;
+
+  @media (max-width: 600px) {
+    font-size: 0.88rem;
+  }
 
   &:focus-visible {
     outline: 2px solid #c8d1d9;
@@ -297,6 +433,14 @@ const Controls = styled.div`
     justify-content: space-between;
     margin-bottom: 1.5rem;
   }
+
+  @media (max-width: 600px) {
+    margin-bottom: 0.75rem;
+  }
+
+  ${short} {
+    margin-bottom: 0.6rem;
+  }
 `
 
 const Arrows = styled.div`
@@ -308,6 +452,12 @@ const NavBtn = styled.button`
   width: 46px;
   height: 46px;
   padding: 0;
+
+  @media (max-width: 600px) {
+    width: 40px;
+    height: 40px;
+  }
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -558,7 +708,7 @@ export function Services() {
                     ))}
                   </List>
                   <Foot>
-                    <CardLink href="#cta">
+                    <CardLink href="#cta" data-umami-event={`Click Saber Mais | Service - ${s.title}`}>
                       Quero saber mais
                     </CardLink>
                   </Foot>
