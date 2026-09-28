@@ -16,7 +16,7 @@ const Section = styled.section`
     right: -10%;
     width: 520px;
     height: 520px;
-    background: radial-gradient(circle, rgba(35, 48, 71, 0.05), transparent 70%);
+    background: radial-gradient(circle, rgba(35, 48, 71, 0.04), transparent 70%);
     pointer-events: none;
   }
 `
@@ -30,34 +30,33 @@ const Inner = styled.div`
 const Header = styled.div`
   margin-bottom: 4rem;
   padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(35, 48, 71, 0.12);
+  border-bottom: 1px solid rgba(35, 48, 71, 0.1);
 `
 
 const Eyebrow = styled.span`
   display: block;
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #233047;
-  opacity: 0.45;
+  opacity: 0.5;
   margin-bottom: 1.25rem;
 `
 
 const Title = styled.h2`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   color: #233047;
   margin: 0;
-  line-height: 1.1;
+  line-height: 1.12;
   max-width: 720px;
 `
 
 const Muted = styled.span`
-  color: rgba(35, 48, 71, 0.35);
+  color: rgba(35, 48, 71, 0.38);
+  font-weight: 600;
 `
 
 const List = styled.div`
@@ -81,7 +80,7 @@ const Arrow = styled.span`
 
 const ListItem = styled.div<{ $visible: boolean; $last: boolean }>`
   ${spotlight}
-  --spot: rgba(35, 48, 71, 0.05);
+  --spot: rgba(35, 48, 71, 0.04);
   display: grid;
   grid-template-columns: 1fr 2fr auto;
   gap: 2rem;
@@ -99,14 +98,14 @@ const ListItem = styled.div<{ $visible: boolean; $last: boolean }>`
     bottom: 0;
     height: 1px;
     display: ${({ $last }) => ($last ? 'none' : 'block')};
-    background: rgba(35, 48, 71, 0.12);
+    background: rgba(35, 48, 71, 0.09);
     transform-origin: left;
     transform: scaleX(${({ $visible }) => ($visible ? 1 : 0)});
     transition: transform 1.1s cubic-bezier(0.65, 0, 0.35, 1) 0.25s;
   }
 
   &:hover {
-    background: rgba(200, 209, 217, 0.35);
+    background: #f4f7fa;
     padding-left: 2rem;
   }
 
@@ -141,16 +140,15 @@ const ItemHead = styled.div`
 `
 
 const ItemIndex = styled.span`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
   color: #233047;
   opacity: 0.35;
 `
 
 const ItemTitle = styled.h3`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -159,11 +157,9 @@ const ItemTitle = styled.h3`
 `
 
 const ItemDesc = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 1rem;
-  line-height: 1.7;
-  color: #233047;
-  opacity: 0.55;
+  line-height: 1.75;
+  color: #50617a;
   margin: 0;
   max-width: 600px;
 `
@@ -188,12 +184,12 @@ export function Audience() {
     <Section id="audience">
       <Inner>
         <Reveal>
-        <Header>
-          <Eyebrow>Para quem</Eyebrow>
-          <Title>
-            Feito para quem já vende <Muted>e quer crescer com o que é seu.</Muted>
-          </Title>
-        </Header>
+          <Header>
+            <Eyebrow>Para quem</Eyebrow>
+            <Title>
+              Feito para quem já vende <Muted>e quer crescer com o que é seu.</Muted>
+            </Title>
+          </Header>
         </Reveal>
         <List>
           {items.map((item, i) => (
@@ -203,6 +199,7 @@ export function Audience() {
                   $visible={visible}
                   $last={i === items.length - 1}
                   onMouseMove={trackPointer}
+                  data-testid={`audience-item-${i + 1}`}
                 >
                   <ItemHead>
                     <ItemIndex>{String(i + 1).padStart(2, '0')}</ItemIndex>

@@ -7,7 +7,7 @@ const Section = styled.section`
   scroll-margin-top: 64px;
   position: relative;
   overflow: hidden;
-  background: #fafaf9;
+  background: #ffffff;
   padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
 
   // brilho suave no canto, mesma linguagem da seção "Para quem"
@@ -18,7 +18,7 @@ const Section = styled.section`
     left: -10%;
     width: 520px;
     height: 520px;
-    background: radial-gradient(circle, rgba(35, 48, 71, 0.06), transparent 70%);
+    background: radial-gradient(circle, rgba(35, 48, 71, 0.04), transparent 70%);
     pointer-events: none;
   }
 `
@@ -30,22 +30,19 @@ const Inner = styled.div`
 `
 
 const SectionLabel = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #233047;
-  opacity: 0.55;
+  color: #50617a;
   margin: 0 0 0.75rem;
   text-align: center;
 `
 
 const Title = styled.h2`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
   font-weight: 800;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   color: #233047;
   text-align: center;
   margin: 0 0 1rem;
@@ -53,11 +50,9 @@ const Title = styled.h2`
 `
 
 const Subtitle = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 1.05rem;
-  line-height: 1.6;
-  color: #233047;
-  opacity: 0.7;
+  line-height: 1.65;
+  color: #50617a;
   text-align: center;
   max-width: 500px;
   margin: 0 auto 3rem;
@@ -74,8 +69,8 @@ const ChevronIcon = styled.span<{ $open: boolean }>`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: ${({ $open }) => ($open ? '#233047' : 'rgba(35, 48, 71, 0.08)')};
-  color: ${({ $open }) => ($open ? '#c8d1d9' : '#233047')};
+  background: ${({ $open }) => ($open ? '#233047' : '#eef2f6')};
+  color: ${({ $open }) => ($open ? '#f1f5f9' : '#233047')};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,15 +81,15 @@ const ChevronIcon = styled.span<{ $open: boolean }>`
 
 const Item = styled.div<{ $open: boolean }>`
   ${spotlight}
-  --spot: rgba(35, 48, 71, 0.06);
-  background: ${({ $open }) => ($open ? '#ffffff' : 'rgba(255, 255, 255, 0.6)')};
-  border: 1px solid ${({ $open }) => ($open ? 'rgba(35, 48, 71, 0.15)' : 'rgba(35, 48, 71, 0.08)')};
+  --spot: rgba(35, 48, 71, 0.05);
+  background: ${({ $open }) => ($open ? '#ffffff' : '#f8f9fb')};
+  border: 1px solid ${({ $open }) => ($open ? 'rgba(35, 48, 71, 0.14)' : '#e8edf3')};
   border-radius: 16px;
-  box-shadow: ${({ $open }) => ($open ? '0 10px 30px rgba(35, 48, 71, 0.08)' : 'none')};
+  box-shadow: ${({ $open }) => ($open ? '0 14px 36px rgba(35, 48, 71, 0.09)' : 'none')};
   transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
 
   &:hover {
-    border-color: rgba(35, 48, 71, 0.2);
+    border-color: rgba(35, 48, 71, 0.22);
   }
 `
 
@@ -108,7 +103,7 @@ const Question = styled.button`
   border: none;
   cursor: pointer;
   padding: 1.25rem 1.5rem;
-  font-family: 'Open Sans', system-ui, sans-serif;
+  font-family: inherit;
   font-size: 1rem;
   font-weight: 700;
   color: #233047;
@@ -139,10 +134,9 @@ const AnswerClip = styled.div`
 `
 
 const AnswerInner = styled.p<{ $open: boolean }>`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.95rem;
   line-height: 1.75;
-  color: rgba(35, 48, 71, 0.8);
+  color: #50617a;
   margin: 0;
   padding: 0 1.5rem 1.5rem;
   max-width: 620px;
@@ -185,29 +179,30 @@ export function FAQ() {
     <Section id="faq">
       <Inner>
         <Reveal>
-        <SectionLabel>Dúvidas frequentes</SectionLabel>
-        <Title>Tem alguma dúvida? A gente responde.</Title>
-        <Subtitle>
-          Reunimos as perguntas mais comuns de quem está começando. Se a sua não estiver aqui, é só chamar.
-        </Subtitle>
+          <SectionLabel>Dúvidas frequentes</SectionLabel>
+          <Title>Tem alguma dúvida? A gente responde.</Title>
+          <Subtitle>
+            Reunimos as perguntas mais comuns de quem está começando. Se a sua não estiver aqui, é só chamar.
+          </Subtitle>
         </Reveal>
         <List>
           {faqs.map((f, i) => (
             <Reveal key={i} delay={i * 90}>
-            <Item $open={open === i} onMouseMove={trackPointer}>
-              <Question
-                onClick={() => setOpen(open === i ? null : i)}
-                aria-expanded={open === i}
-              >
-                {f.q}
-                <ChevronIcon $open={open === i} aria-hidden>▾</ChevronIcon>
-              </Question>
-              <Answer $open={open === i} aria-hidden={open !== i}>
-                <AnswerClip>
-                  <AnswerInner $open={open === i}>{f.a}</AnswerInner>
-                </AnswerClip>
-              </Answer>
-            </Item>
+              <Item $open={open === i} onMouseMove={trackPointer} data-testid={`faq-item-${i + 1}`}>
+                <Question
+                  onClick={() => setOpen(open === i ? null : i)}
+                  aria-expanded={open === i}
+                  data-testid={`faq-question-${i + 1}`}
+                >
+                  {f.q}
+                  <ChevronIcon $open={open === i} aria-hidden>▾</ChevronIcon>
+                </Question>
+                <Answer $open={open === i} aria-hidden={open !== i}>
+                  <AnswerClip>
+                    <AnswerInner $open={open === i}>{f.a}</AnswerInner>
+                  </AnswerClip>
+                </Answer>
+              </Item>
             </Reveal>
           ))}
         </List>

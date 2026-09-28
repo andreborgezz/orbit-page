@@ -23,7 +23,7 @@ const Section = styled.section`
     width: 520px;
     height: 520px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(200, 209, 217, 0.12), transparent 70%);
+    background: radial-gradient(circle, rgba(200, 209, 217, 0.1), transparent 70%);
     pointer-events: none;
   }
 
@@ -35,7 +35,7 @@ const Section = styled.section`
     width: 600px;
     height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(200, 209, 217, 0.08), transparent 70%);
+    background: radial-gradient(circle, rgba(200, 209, 217, 0.07), transparent 70%);
     pointer-events: none;
   }
 
@@ -78,12 +78,11 @@ const Header = styled.div`
 `
 
 const Title = styled.h2`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(2rem, 3.6vw, 2.9rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 1.1;
-  color: #e6ebf0;
+  line-height: 1.12;
+  color: #f1f5f9;
   margin: 0;
 
   @media (max-width: 600px) {
@@ -96,11 +95,10 @@ const Title = styled.h2`
 `
 
 const Sub = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   line-height: 1.7;
   color: #c8d1d9;
-  opacity: 0.8;
+  opacity: 0.78;
   margin: 0;
   max-width: 440px;
 
@@ -181,10 +179,10 @@ const IconBox = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
-  border-radius: 16px;
+  border-radius: 14px;
   color: #c8d1d9;
   background: rgba(200, 209, 217, 0.08);
-  border: 1px solid rgba(200, 209, 217, 0.18);
+  border: 1px solid rgba(200, 209, 217, 0.2);
   transition: background 0.35s ease, color 0.35s ease, transform 0.35s ease;
 
   // celular: ícone pequeno ao lado do título
@@ -195,22 +193,22 @@ const IconBox = styled.div`
     width: 44px;
     height: 44px;
     margin: 0;
-    border-radius: 13px;
+    border-radius: 12px;
   }
 `
 
 const Card = styled.article`
   ${spotlight}
-  --spot: rgba(200, 209, 217, 0.13);
+  --spot: rgba(200, 209, 217, 0.12);
   display: flex;
   flex-direction: column;
   height: 100%;
   box-sizing: border-box;
   padding: 2rem 1.75rem 1.75rem;
-  border-radius: 22px;
-  background: linear-gradient(160deg, rgba(200, 209, 217, 0.09), rgba(200, 209, 217, 0.03));
-  border: 1px solid rgba(200, 209, 217, 0.14);
-  transition: transform 0.35s cubic-bezier(0.22, 0.7, 0.2, 1), border-color 0.35s ease;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(200, 209, 217, 0.16);
+  transition: transform 0.35s cubic-bezier(0.22, 0.7, 0.2, 1), border-color 0.35s ease, background 0.35s ease;
 
   @supports (grid-template-rows: subgrid) {
     display: grid;
@@ -245,6 +243,7 @@ const Card = styled.article`
   @media (hover: hover) {
     &:hover {
       transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.07);
       border-color: rgba(200, 209, 217, 0.34);
     }
 
@@ -265,11 +264,10 @@ const Card = styled.article`
 `
 
 const CardTitle = styled.h3`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #e6ebf0;
+  color: #f1f5f9;
   margin: 0 0 0.4rem;
 
   @media (max-width: 600px) {
@@ -287,7 +285,6 @@ const CardTitle = styled.h3`
 `
 
 const Ideal = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
   color: #8aa2c9;
@@ -308,7 +305,6 @@ const Ideal = styled.p`
 `
 
 const Desc = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.98rem;
   line-height: 1.7;
   color: #c8d1d9;
@@ -356,7 +352,6 @@ const Item = styled.li`
   display: flex;
   align-items: flex-start;
   gap: 0.7rem;
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.92rem;
   line-height: 1.5;
   color: #c8d1d9;
@@ -405,11 +400,15 @@ const CardLink = styled.a`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.92rem;
   font-weight: 700;
-  color: #e6ebf0;
+  color: #f1f5f9;
   text-decoration: none;
+  transition: gap 0.25s ease;
+
+  &:hover {
+    gap: 0.75rem;
+  }
 
   @media (max-width: 600px) {
     font-size: 0.88rem;
@@ -463,7 +462,7 @@ const NavBtn = styled.button`
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
-  color: #e6ebf0;
+  color: #f1f5f9;
   background: rgba(200, 209, 217, 0.06);
   border: 1px solid rgba(200, 209, 217, 0.3);
   transition: background 0.25s ease, color 0.25s ease, opacity 0.25s ease, transform 0.2s ease;
@@ -672,18 +671,19 @@ export function Services() {
                   $active={i === index}
                   aria-label={`Ir para ${s.title}`}
                   aria-current={i === index}
+                  data-testid={`services-dot-${i + 1}`}
                   onClick={() => goTo(i)}
                 />
               ))}
             </Dots>
 
             <Arrows>
-              <NavBtn type="button" aria-label="Serviço anterior" disabled={index === 0} onClick={() => goTo(index - 1)}>
+              <NavBtn type="button" aria-label="Serviço anterior" data-testid="services-prev" disabled={index === 0} onClick={() => goTo(index - 1)}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <polyline points="15 18 9 12 15 6" />
                 </svg>
               </NavBtn>
-              <NavBtn type="button" aria-label="Próximo serviço" disabled={index === last} onClick={() => goTo(index + 1)}>
+              <NavBtn type="button" aria-label="Próximo serviço" data-testid="services-next" disabled={index === last} onClick={() => goTo(index + 1)}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <polyline points="9 18 15 12 9 6" />
                 </svg>
@@ -694,7 +694,7 @@ export function Services() {
           <Grid ref={scroller}>
             {services.map((s, i) => (
               <Cell key={s.title} delay={i * 130} scale={0.97}>
-                <Card onMouseMove={trackPointer}>
+                <Card onMouseMove={trackPointer} data-testid={`services-card-${i + 1}`}>
                   <IconBox>{s.svg}</IconBox>
                   <CardTitle>{s.title}</CardTitle>
                   <Ideal>{s.ideal}</Ideal>
@@ -710,6 +710,7 @@ export function Services() {
                   <Foot>
                     <CardLink href="#cta" data-umami-event={`Click Saber Mais | Service - ${s.title}`}>
                       Quero saber mais
+                      <span aria-hidden>→</span>
                     </CardLink>
                   </Foot>
                 </Card>

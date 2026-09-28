@@ -1,3 +1,4 @@
+import { ScrollProgress } from '../components/ScrollProgress'
 import { NavBar } from '../components/NavBar'
 import { Hero } from '../components/Hero'
 import { Audience } from '../components/Audience'
@@ -11,6 +12,7 @@ import { Footer } from '../components/Footer'
 export function OrbitPage() {
   return (
     <>
+      <ScrollProgress />
       <NavBar />
       <Hero />
       <Audience />

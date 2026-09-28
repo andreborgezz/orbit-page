@@ -12,7 +12,7 @@ const Section = styled.section`
   scroll-margin-top: 64px;
   position: relative;
   overflow: hidden;
-  background: #c8d1d9;
+  background: #f2f5f8;
   padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
 
   // brilho suave no topo pra dar profundidade
@@ -24,7 +24,7 @@ const Section = styled.section`
     transform: translateX(-50%);
     width: 700px;
     height: 400px;
-    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.35), transparent 70%);
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.55), transparent 70%);
     pointer-events: none;
   }
 `
@@ -36,22 +36,19 @@ const Inner = styled.div`
 `
 
 const SectionLabel = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #233047;
-  opacity: 0.55;
+  color: #50617a;
   margin: 0 0 0.75rem;
   text-align: center;
 `
 
 const Title = styled.h2`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
   font-weight: 800;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   color: #233047;
   text-align: center;
   margin: 0 0 1rem;
@@ -59,11 +56,9 @@ const Title = styled.h2`
 `
 
 const Subtitle = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 1.05rem;
-  line-height: 1.6;
-  color: #233047;
-  opacity: 0.7;
+  line-height: 1.65;
+  color: #50617a;
   text-align: center;
   max-width: 560px;
   margin: 0 auto 4rem;
@@ -86,7 +81,7 @@ const ConnectorLine = styled.div<{ $visible: boolean }>`
   left: calc(12.5% + 27px);
   right: calc(12.5% + 27px);
   height: 0;
-  border-top: 1px dashed rgba(35, 48, 71, 0.3);
+  border-top: 1px dashed rgba(35, 48, 71, 0.25);
   pointer-events: none;
   // revela da esquerda pra direita
   clip-path: inset(0 ${({ $visible }) => ($visible ? '0%' : '100%')} 0 0);
@@ -115,7 +110,7 @@ const StepNum = styled.div<{ $visible: boolean; $delay: number }>`
   position: relative;
   z-index: 1;
   // anel externo que "destaca" o número do fundo
-  box-shadow: 0 0 0 6px #c8d1d9, 0 8px 20px rgba(35, 48, 71, 0.25);
+  box-shadow: 0 0 0 6px #f2f5f8, 0 10px 24px rgba(35, 48, 71, 0.2);
   transition: transform 0.3s ease;
 
   // antes de aparecer: escondido. depois: pulo com leve exagero
@@ -130,10 +125,10 @@ const StepNum = styled.div<{ $visible: boolean; $delay: number }>`
         `}
 
   span {
-    font-family: 'Open Sans', system-ui, sans-serif;
     font-size: 1.05rem;
     font-weight: 800;
-    color: #c8d1d9;
+    font-variant-numeric: tabular-nums;
+    color: #e6ebf0;
   }
 
   @media (max-width: 900px) {
@@ -171,18 +166,20 @@ const Step = styled.div`
 
 const Card = styled.div`
   ${spotlight}
-  --spot: rgba(255, 255, 255, 0.9);
+  --spot: rgba(35, 48, 71, 0.05);
   box-sizing: border-box;
   flex: 1;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid #e5ebf2;
+  border-radius: 16px;
   padding: 1.5rem 1.25rem;
   width: 100%;
-  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 2px 10px rgba(35, 48, 71, 0.04);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 
   ${Step}:hover & {
-    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(35, 48, 71, 0.2);
+    box-shadow: 0 14px 34px rgba(35, 48, 71, 0.1);
     transform: translateY(-3px);
   }
 
@@ -192,7 +189,6 @@ const Card = styled.div`
 `
 
 const StepTitle = styled.h3`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
   color: #233047;
@@ -200,11 +196,9 @@ const StepTitle = styled.h3`
 `
 
 const StepDesc = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.9rem;
-  line-height: 1.65;
-  color: #233047;
-  opacity: 0.75;
+  line-height: 1.7;
+  color: #50617a;
   margin: 0;
 `
 
@@ -249,7 +243,7 @@ export function Process() {
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={200 + i * 160} scale={0.96}>
               {(visible) => (
-                <Step>
+                <Step data-testid={`process-step-${i + 1}`}>
                   <StepNum $visible={visible} $delay={350 + i * 160}>
                     <span>{s.n}</span>
                   </StepNum>

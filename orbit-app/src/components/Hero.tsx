@@ -1,8 +1,8 @@
 import { useRef } from 'react'
-import type { PointerEvent, ReactNode } from 'react'
+import type { PointerEvent } from 'react'
 import styled, { css, keyframes } from 'styled-components'
-import ilustracao from '../assets/ilustracao-vetorial.png'
 import { reduceMotion } from '../lib/effects'
+import { HeroRidges } from './HeroRidges'
 
 const riseIn = keyframes`
   from { opacity: 0; transform: translateY(22px); filter: blur(6px); }
@@ -21,9 +21,8 @@ const spin = keyframes`
 
 const float = keyframes`
   0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-12px); }
+  50%      { transform: translateY(-10px); }
 `
-
 
 const sheen = keyframes`
   0%, 100% { background-position: 0% 50%; }
@@ -32,13 +31,18 @@ const sheen = keyframes`
 
 const underlineIn = keyframes`
   from { text-decoration-color: transparent; }
-  to   { text-decoration-color: rgba(35, 48, 71, 0.55); }
+  to   { text-decoration-color: rgba(35, 48, 71, 0.5); }
 `
 
 const wheel = keyframes`
   0%   { opacity: 0; transform: translateY(0); }
   30%  { opacity: 1; }
   100% { opacity: 0; transform: translateY(12px); }
+`
+
+const livePulse = keyframes`
+  0%, 100% { box-shadow: 0 0 0 0 rgba(46, 158, 91, 0.35); }
+  60%      { box-shadow: 0 0 0 6px rgba(46, 158, 91, 0); }
 `
 
 // entrada em cascata: $i define a ordem
@@ -55,8 +59,8 @@ const Section = styled.section`
   min-height: 100svh;
   display: flex;
   align-items: center;
-  padding: 80px clamp(1.5rem, 5vw, 4rem) 3rem;
-  background: #c8d1d9;
+  padding: 110px clamp(1.5rem, 5vw, 4rem) 4rem;
+  background: #f8f9fb;
 `
 
 const Backdrop = styled.div`
@@ -65,54 +69,55 @@ const Backdrop = styled.div`
   pointer-events: none;
 `
 
-const BlobLight = styled.span`
+const GlowLight = styled.span`
   position: absolute;
-  top: -12%;
-  left: -10%;
-  width: 560px;
-  height: 560px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent 65%);
-  animation: ${drift} 16s ease-in-out infinite alternate;
-  ${reduceMotion}
-`
-
-const BlobDark = styled.span`
-  position: absolute;
-  bottom: -18%;
-  right: -12%;
+  top: -18%;
+  right: -8%;
   width: 640px;
   height: 640px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(35, 48, 71, 0.18), transparent 65%);
-  animation: ${drift} 20s ease-in-out infinite alternate-reverse;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent 62%);
+  animation: ${drift} 18s ease-in-out infinite alternate;
+  ${reduceMotion}
+`
+
+const GlowNavy = styled.span`
+  position: absolute;
+  bottom: -22%;
+  left: -14%;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(35, 48, 71, 0.07), transparent 65%);
+  animation: ${drift} 22s ease-in-out infinite alternate-reverse;
   ${reduceMotion}
 `
 
 const DotGrid = styled.span`
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(35, 48, 71, 0.2) 1px, transparent 1.2px);
+  background-image: radial-gradient(rgba(35, 48, 71, 0.14) 1px, transparent 1.2px);
   background-size: 26px 26px;
-  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 72% 45%, #000 0%, transparent 100%);
-  mask-image: radial-gradient(ellipse 60% 55% at 72% 45%, #000 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 55% 50% at 74% 38%, #000 0%, transparent 100%);
+  mask-image: radial-gradient(ellipse 55% 50% at 74% 38%, #000 0%, transparent 100%);
+  opacity: 0.7;
 `
 
 const Inner = styled.div`
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 4vw, 6rem);
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
   align-items: center;
   width: 100%;
-  max-width: clamp(1000px, 85vw, 1400px);
+  max-width: clamp(1000px, 85vw, 1360px);
   margin: 0 auto;
 
-  @media (max-width: 900px) {
+  @media (max-width: 960px) {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 2.5rem;
+    gap: 3.5rem;
   }
 `
 
@@ -122,64 +127,65 @@ const Eyebrow = styled.p<{ $i?: number }>`
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  margin: 0 0 1.4rem;
-  font-family: 'Open Sans', system-ui, sans-serif;
+  margin: 0 0 1.5rem;
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(35, 48, 71, 0.75);
+  color: #50617a;
   ${rise}
 
   // traço fino antes do texto
   &::before {
     content: '';
-    width: 28px;
+    width: 30px;
     height: 1px;
     background: currentColor;
-    opacity: 0.6;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 960px) {
+    justify-content: center;
   }
 `
 
 const Headline = styled.h1<{ $i?: number }>`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: clamp(2.2rem, 3.8vw, 4.5rem);
+  font-size: clamp(2.35rem, 4.4vw, 3.9rem);
   font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
   color: #233047;
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.4rem;
   ${rise}
 `
 
 // inline (não inline-block) pro sublinhado acompanhar a quebra de linha
 const Accent = styled.span`
-  background: linear-gradient(100deg, #233047 10%, #56729f 55%, #233047 95%);
-  background-size: 200% 100%;
+  background: linear-gradient(100deg, #233047 15%, #56729f 55%, #233047 95%);
+  background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
   text-decoration: underline;
-  text-decoration-thickness: 0.07em;
-  text-underline-offset: 0.14em;
-  text-decoration-color: rgba(35, 48, 71, 0.55);
-  animation: ${sheen} 7s ease-in-out infinite, ${underlineIn} 1s 1s ease backwards;
+  text-decoration-thickness: 0.055em;
+  text-underline-offset: 0.13em;
+  text-decoration-color: rgba(35, 48, 71, 0.5);
+  animation: ${sheen} 9s ease-in-out infinite, ${underlineIn} 1s 1.1s ease backwards;
   ${reduceMotion}
 `
 
 const Sub = styled.p<{ $i?: number }>`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: clamp(0.95rem, 1.1vw, 1.25rem);
+  font-size: clamp(0.98rem, 1.1vw, 1.15rem);
   font-weight: 400;
-  line-height: 1.7;
-  color: #233047;
-  opacity: 0.72;
-  margin: 0 0 clamp(1.5rem, 3vw, 2.5rem);
-  max-width: clamp(400px, 35vw, 560px);
+  line-height: 1.75;
+  color: #50617a;
+  opacity: 0.85;
+  margin: 0 0 clamp(1.75rem, 3vw, 2.5rem);
+  max-width: 540px;
   ${rise}
 
-  @media (max-width: 900px) {
+  @media (max-width: 960px) {
     margin-left: auto;
     margin-right: auto;
   }
@@ -187,11 +193,11 @@ const Sub = styled.p<{ $i?: number }>`
 
 const Buttons = styled.div<{ $i?: number }>`
   display: flex;
-  gap: 1rem;
+  gap: 0.85rem;
   flex-wrap: wrap;
   ${rise}
 
-  @media (max-width: 900px) {
+  @media (max-width: 960px) {
     justify-content: center;
   }
 `
@@ -207,16 +213,15 @@ const PrimaryBtn = styled.a`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
-  color: #c8d1d9;
+  color: #f1f5f9;
   background: #233047;
-  padding: 0.875rem 1.75rem;
-  border-radius: 10px;
+  padding: 0.95rem 1.9rem;
+  border-radius: 12px;
   text-decoration: none;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 4px 20px rgba(35, 48, 71, 0.2);
+  box-shadow: 0 2px 10px rgba(35, 48, 71, 0.18);
 
   // brilho que atravessa o botão
   &::after {
@@ -226,14 +231,14 @@ const PrimaryBtn = styled.a`
     left: -60%;
     width: 40%;
     height: 100%;
-    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.22), transparent);
     transform: skewX(-20deg);
     transition: left 0.7s ease;
   }
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(35, 48, 71, 0.3);
+    box-shadow: 0 12px 32px rgba(35, 48, 71, 0.28);
   }
 
   &:hover::after {
@@ -253,21 +258,20 @@ const PrimaryBtn = styled.a`
 const SecondaryBtn = styled.a`
   display: inline-flex;
   align-items: center;
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
   color: #233047;
-  background: rgba(255, 255, 255, 0.25);
-  border: 1.5px solid rgba(35, 48, 71, 0.3);
-  padding: 0.875rem 1.75rem;
-  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid rgba(35, 48, 71, 0.16);
+  padding: 0.95rem 1.9rem;
+  border-radius: 12px;
   text-decoration: none;
-  transition: border-color 0.25s, background 0.25s, transform 0.25s;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 
   &:hover {
-    border-color: #233047;
-    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(35, 48, 71, 0.45);
     transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(35, 48, 71, 0.1);
   }
 
   &:focus-visible {
@@ -280,29 +284,26 @@ const TrustBar = styled.div<{ $i?: number }>`
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  margin-top: 2rem;
+  margin-top: 2.25rem;
   flex-wrap: wrap;
   ${rise}
 
-  @media (max-width: 900px) {
+  @media (max-width: 960px) {
     justify-content: center;
   }
 `
 
 const TrustItem = styled.span`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.78rem;
   font-weight: 600;
-  color: #233047;
+  color: #3d4f6b;
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.4rem 0.8rem;
+  gap: 0.5rem;
+  padding: 0.45rem 0.9rem 0.45rem 0.5rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
 
   &::before {
     content: '✓';
@@ -313,20 +314,20 @@ const TrustItem = styled.span`
     height: 16px;
     border-radius: 50%;
     background: #233047;
-    color: #c8d1d9;
-    font-size: 0.6rem;
+    color: #f1f5f9;
+    font-size: 0.58rem;
     font-weight: 700;
   }
 `
 
-const IllustrationWrap = styled.div<{ $i?: number }>`
+const Visual = styled.div<{ $i?: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
   ${rise}
 
-  @media (max-width: 900px) {
-    max-width: 380px;
+  @media (max-width: 960px) {
+    max-width: 480px;
     margin: 0 auto;
   }
 `
@@ -334,25 +335,17 @@ const IllustrationWrap = styled.div<{ $i?: number }>`
 const Stage = styled.div`
   position: relative;
   width: 100%;
-  max-width: clamp(380px, 38vw, 650px);
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 `
 
-const Glow = styled.span`
-  position: absolute;
-  inset: 12%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.7), transparent 70%);
-`
-
 const Ring = styled.span<{ $inset: string; $dur: number; $reverse?: boolean }>`
   position: absolute;
   inset: ${(p) => p.$inset};
   border-radius: 50%;
-  border: 1px dashed rgba(35, 48, 71, 0.24);
+  border: 1px dashed rgba(35, 48, 71, 0.16);
   animation: ${spin} ${(p) => p.$dur}s linear infinite ${(p) => (p.$reverse ? 'reverse' : 'normal')};
   ${reduceMotion}
 
@@ -360,14 +353,14 @@ const Ring = styled.span<{ $inset: string; $dur: number; $reverse?: boolean }>`
   &::after {
     content: '';
     position: absolute;
-    top: -5px;
+    top: -4px;
     left: 50%;
-    width: 10px;
-    height: 10px;
-    margin-left: -5px;
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
     border-radius: 50%;
     background: #233047;
-    box-shadow: 0 0 0 5px rgba(35, 48, 71, 0.12);
+    box-shadow: 0 0 0 4px rgba(35, 48, 71, 0.1);
   }
 `
 
@@ -375,7 +368,6 @@ const Ring = styled.span<{ $inset: string; $dur: number; $reverse?: boolean }>`
 const Layer = styled.div<{ $depth: number }>`
   position: relative;
   z-index: 1;
-  width: 100%;
   transform: translate3d(
     calc(var(--px, 0) * ${(p) => p.$depth}px),
     calc(var(--py, 0) * ${(p) => p.$depth * 0.7}px),
@@ -386,19 +378,139 @@ const Layer = styled.div<{ $depth: number }>`
 `
 
 const Float = styled.div<{ $delay?: number }>`
-  animation: ${float} 6s ease-in-out infinite;
+  animation: ${float} 6.5s ease-in-out infinite;
   animation-delay: ${(p) => p.$delay ?? 0}s;
   ${reduceMotion}
 `
 
-const Illustration = styled.img`
-  display: block;
-  width: 100%;
-  max-width: clamp(320px, 32vw, 550px);
-  height: auto;
-  margin: 0 auto;
-  filter: drop-shadow(0 16px 48px rgba(35, 48, 71, 0.14));
+// -------- janela do estúdio: editor + preview construídos em CSS --------
+
+const Window = styled.div`
+  position: relative;
+  width: min(100%, 560px);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow:
+    0 30px 80px rgba(35, 48, 71, 0.13),
+    0 2px 8px rgba(35, 48, 71, 0.05);
 `
+
+const Titlebar = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #edf2f7;
+`
+
+const WinDots = styled.span`
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+
+  i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #dce4ec;
+  }
+`
+
+const UrlPill = styled.span`
+  margin: 0 auto;
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: #50617a;
+  background: #f2f5f8;
+  border: 1px solid #e8edf3;
+  border-radius: 8px;
+  padding: 0.28rem 1rem;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+`
+
+const WinState = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #7a8ba3;
+
+  i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2e9e5b;
+  }
+`
+
+const Editor = styled.div`
+  background: #1c273a;
+  padding: 1.1rem 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+`
+
+const CodeRow = styled.div`
+  display: flex;
+  gap: 1rem;
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  line-height: 1.6;
+  white-space: pre;
+`
+
+const LineNum = styled.span`
+  width: 0.9rem;
+  text-align: right;
+  color: rgba(200, 209, 217, 0.28);
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+`
+
+// tokens do editor — paleta aço sobre navy, na linguagem da marca
+const tokenColor: Record<string, string> = {
+  com: 'rgba(200, 209, 217, 0.4)',
+  kw: '#8aa2c9',
+  fn: '#e6ebf0',
+  tag: '#e6ebf0',
+  attr: '#c8d1d9',
+  pl: 'rgba(230, 235, 240, 0.85)',
+}
+
+const StatusBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #182234;
+  border-top: 1px solid rgba(200, 209, 217, 0.08);
+  padding: 0.5rem 1.25rem;
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
+  font-size: 0.62rem;
+  color: rgba(200, 209, 217, 0.6);
+
+  b {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    color: rgba(200, 209, 217, 0.85);
+
+    i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #2e9e5b;
+    }
+  }
+`
+
+// -------- cartões flutuantes (telemetria) --------
 
 const Slot = styled.div<{ $depth: number }>`
   position: absolute;
@@ -411,26 +523,66 @@ const Slot = styled.div<{ $depth: number }>`
   transition: transform 0.3s ease-out;
   ${reduceMotion}
 `
+// em telas pequenas os cartões de cima saem — ficariam em cima da barra da janela
+const SlotTop = styled(Slot)`
+  @media (max-width: 560px) {
+    display: none;
+  }
+`
 
-const Chip = styled.div`
-  width: 48px;
-  height: 48px;
+const BadgeCard = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #233047;
+  gap: 0.7rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(35, 48, 71, 0.16);
+  padding: 0.7rem 0.95rem;
+  box-shadow: 0 16px 44px rgba(35, 48, 71, 0.14);
+`
 
-  @media (max-width: 520px) {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-  }
+const Gauge = styled.svg`
+  display: block;
+  transform: rotate(-90deg);
+`
+
+const BadgeValue = styled.p`
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #233047;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+`
+
+const BadgeLabel = styled.p`
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #7a8ba3;
+  line-height: 1.3;
+`
+
+const LiveDot = styled.span`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2e9e5b;
+  animation: ${livePulse} 2.4s ease infinite;
+  ${reduceMotion}
+`
+
+const DarkPill = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #233047;
+  color: #e6ebf0;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+  box-shadow: 0 14px 36px rgba(35, 48, 71, 0.28);
 `
 
 const Cue = styled.a`
@@ -441,7 +593,7 @@ const Cue = styled.a`
   width: 24px;
   height: 38px;
   margin-left: -12px;
-  border: 1.5px solid rgba(35, 48, 71, 0.4);
+  border: 1.5px solid rgba(35, 48, 71, 0.35);
   border-radius: 14px;
   opacity: 0.8;
   transition: opacity 0.2s;
@@ -464,74 +616,56 @@ const Cue = styled.a`
     ${reduceMotion}
   }
 
-  @media (max-width: 900px), (max-height: 640px) {
+  @media (max-width: 960px), (max-height: 640px) {
     display: none;
   }
 `
 
-const icon = (children: ReactNode) => (
-  <svg
-    width="22"
-    height="22"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden
-  >
-    {children}
-  </svg>
-)
+// linha de código: pares token/valor
+type Token = 'com' | 'kw' | 'fn' | 'tag' | 'attr' | 'pl'
+type Frag = { t: string; c: Token }
 
-const chips = [
-  {
-    pos: { top: '9%', left: '0%' },
-    depth: 22,
-    delay: 0,
-    svg: icon(
-      <>
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
-      </>,
-    ),
-  },
-  {
-    pos: { top: '20%', right: '-2%' },
-    depth: -18,
-    delay: 1.2,
-    svg: icon(
-      <>
-        <circle cx="9" cy="21" r="1" />
-        <circle cx="20" cy="21" r="1" />
-        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-      </>,
-    ),
-  },
-  {
-    pos: { bottom: '18%', left: '-3%' },
-    depth: -26,
-    delay: 2.1,
-    svg: icon(
-      <>
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-        <polyline points="22 4 12 14.01 9 11.01" />
-      </>,
-    ),
-  },
-  {
-    pos: { bottom: '6%', right: '10%' },
-    depth: 16,
-    delay: 0.7,
-    svg: icon(<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />),
-  },
+const code: Frag[][] = [
+  [{ t: '// orbit/painel/checkout.tsx', c: 'com' }],
+  [
+    { t: 'export ', c: 'kw' },
+    { t: 'function ', c: 'kw' },
+    { t: 'Checkout', c: 'fn' },
+    { t: '() {', c: 'pl' },
+  ],
+  [
+    { t: '  ', c: 'pl' },
+    { t: 'const ', c: 'kw' },
+    { t: '{ pedido }', c: 'pl' },
+    { t: ' = ', c: 'pl' },
+    { t: 'usePedido', c: 'fn' },
+    { t: '()', c: 'pl' },
+  ],
+  [
+    { t: '  ', c: 'pl' },
+    { t: 'return', c: 'kw' },
+    { t: ' (', c: 'pl' },
+  ],
+  [
+    { t: '    <', c: 'pl' },
+    { t: 'Pagamento', c: 'tag' },
+    { t: ' pix cartao boleto', c: 'attr' },
+    { t: ' />', c: 'pl' },
+  ],
+  [
+    { t: '  )', c: 'pl' },
+  ],
+  [{ t: '}', c: 'pl' }],
 ]
+
+// anel de performance: trilho + arco quase completo
+const R = 15.5
+const C = 2 * Math.PI * R
 
 export function Hero() {
   const stage = useRef<HTMLDivElement>(null)
 
-  // move ilustração e chips de leve conforme o mouse
+  // move mockup e cartões de leve conforme o mouse
   const onMove = (e: PointerEvent<HTMLElement>) => {
     const el = stage.current
     if (!el || e.pointerType === 'touch') return
@@ -543,9 +677,10 @@ export function Hero() {
   return (
     <Section onPointerMove={onMove}>
       <Backdrop aria-hidden>
-        <BlobLight />
-        <BlobDark />
+        <GlowLight />
+        <GlowNavy />
         <DotGrid />
+        <HeroRidges />
       </Backdrop>
 
       <Inner>
@@ -559,10 +694,10 @@ export function Hero() {
             A Orbit transforma ideias em produtos funcionais. Trabalhamos com times e fundadores que precisam de código de qualidade, sem a burocracia de grandes agências.
           </Sub>
           <Buttons $i={3}>
-            <PrimaryBtn href="#cta" data-umami-event="Click Iniciar Projeto na Hero">
+            <PrimaryBtn href="#cta" data-umami-event="Click Iniciar Projeto na Hero" data-testid="hero-cta-primary">
               Iniciar projeto
             </PrimaryBtn>
-            <SecondaryBtn href="#process" data-umami-event="Click Ver Como Funciona na Hero">
+            <SecondaryBtn href="#process" data-umami-event="Click Ver Como Funciona na Hero" data-testid="hero-cta-secondary">
               Ver como funciona
             </SecondaryBtn>
           </Buttons>
@@ -573,25 +708,89 @@ export function Hero() {
           </TrustBar>
         </Copy>
 
-        <IllustrationWrap $i={2}>
-          <Stage ref={stage}>
-            <Glow aria-hidden />
-            <Ring $inset="4%" $dur={60} aria-hidden />
-            <Ring $inset="-9%" $dur={95} $reverse aria-hidden />
-            <Layer $depth={-14}>
+        <Visual $i={2}>
+          <Stage ref={stage} data-testid="hero-mockup">
+            <Ring $inset="1%" $dur={80} aria-hidden />
+            <Ring $inset="-8%" $dur={120} $reverse aria-hidden />
+
+            <Layer $depth={-10}>
               <Float>
-                <Illustration src={ilustracao} alt="Desenvolvedor no workspace" />
+                <Window>
+                  <Titlebar>
+                    <WinDots aria-hidden>
+                      <i /><i /><i />
+                    </WinDots>
+                    <UrlPill>orbitdev.io/painel</UrlPill>
+                    <WinState aria-hidden><i />salvo</WinState>
+                  </Titlebar>
+
+                  <Editor aria-hidden>
+                    {code.map((line, i) => (
+                      <CodeRow key={i}>
+                        <LineNum>{i + 1}</LineNum>
+                        <span>
+                          {line.map((f, j) => (
+                            <span key={j} style={{ color: tokenColor[f.c] }}>{f.t}</span>
+                          ))}
+                        </span>
+                      </CodeRow>
+                    ))}
+                  </Editor>
+
+                  <StatusBar aria-hidden>
+                    <b><i />build sem erros</b>
+                    <span>pronto pra publicar</span>
+                  </StatusBar>
+                </Window>
               </Float>
             </Layer>
-            {chips.map((c, i) => (
-              <Slot key={i} $depth={c.depth} style={c.pos} aria-hidden>
-                <Float $delay={c.delay}>
-                  <Chip>{c.svg}</Chip>
-                </Float>
-              </Slot>
-            ))}
+
+            {/* badge de deploy */}
+            <SlotTop $depth={14} style={{ top: '3%', left: '2%' }} aria-hidden>
+              <Float $delay={1.2}>
+                <DarkPill>deploy · 100% sob medida</DarkPill>
+              </Float>
+            </SlotTop>
+
+            {/* badge de performance com anel */}
+            <SlotTop $depth={-22} style={{ top: '10%', right: '0%' }} aria-hidden>
+              <Float $delay={0.6}>
+                <BadgeCard>
+                  <Gauge width="36" height="36" viewBox="0 0 36 36">
+                    <circle cx="18" cy="18" r={R} fill="none" stroke="#edf2f7" strokeWidth="4" />
+                    <circle
+                      cx="18"
+                      cy="18"
+                      r={R}
+                      fill="none"
+                      stroke="#233047"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeDasharray={`${C * 0.92} ${C}`}
+                    />
+                  </Gauge>
+                  <div>
+                    <BadgeValue>99/100</BadgeValue>
+                    <BadgeLabel>performance</BadgeLabel>
+                  </div>
+                </BadgeCard>
+              </Float>
+            </SlotTop>
+
+            {/* cartão de confirmação pix */}
+            <Slot $depth={26} style={{ bottom: '9%', left: '0%' }} aria-hidden>
+              <Float $delay={1.8}>
+                <BadgeCard>
+                  <LiveDot />
+                  <div>
+                    <BadgeValue style={{ fontSize: '0.78rem' }}>Pix confirmado</BadgeValue>
+                    <BadgeLabel>pedido #1042 · agora</BadgeLabel>
+                  </div>
+                </BadgeCard>
+              </Float>
+            </Slot>
           </Stage>
-        </IllustrationWrap>
+        </Visual>
       </Inner>
 
       <Cue href="#audience" aria-label="Rolar para baixo" />

@@ -242,7 +242,6 @@ export function Footer() {
               <ColumnTitle>Legal</ColumnTitle>
               <FooterLink href="/privacidade">Política de Privacidade</FooterLink>
               <FooterLink href="/cookies">Política de Cookies</FooterLink>
-              <FooterLink href="/termos">Termos de Uso</FooterLink>
             </Column>
 
             <Column>

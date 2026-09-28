@@ -22,20 +22,20 @@ const Nav = styled.nav<{ $solid: boolean; $open: boolean }>`
   justify-content: space-between;
   padding: 0 clamp(1.5rem, 5vw, 4rem);
   height: 64px;
-  border-radius: ${({ $open }) => ($open ? '0' : '0 0 20px 20px')};
+  border-radius: ${({ $open }) => ($open ? '0' : '0 0 16px 16px')};
   transition:
-    border-radius 0.25s ease,
     background 0.35s ease,
     backdrop-filter 0.35s ease,
     border-color 0.35s ease,
     box-shadow 0.35s ease;
 
-  // topo: quase invisível
-  background: ${({ $solid, $open }) => ($open ? '#c8d1d9' : $solid ? 'rgba(200, 209, 217, 0.9)' : 'rgba(200, 209, 217, 0)')};
-  backdrop-filter: ${({ $solid }) => ($solid ? 'blur(14px)' : 'blur(0px)')};
-  -webkit-backdrop-filter: ${({ $solid }) => ($solid ? 'blur(14px)' : 'blur(0px)')};
-  border-bottom: 1px solid ${({ $solid, $open }) => ($solid && !$open ? 'rgba(35, 48, 71, 0.1)' : 'transparent')};
-  box-shadow: ${({ $solid, $open }) => ($solid && !$open ? '0 8px 24px rgba(35, 48, 71, 0.08)' : 'none')};
+  // topo: quase invisível; rolado: vidro fosco claro
+  background: ${({ $solid }) =>
+    $solid ? 'rgba(248, 249, 251, 0.85)' : 'rgba(248, 249, 251, 0)'};
+  backdrop-filter: ${({ $solid }) => ($solid ? 'blur(16px)' : 'blur(0px)')};
+  -webkit-backdrop-filter: ${({ $solid }) => ($solid ? 'blur(16px)' : 'blur(0px)')};
+  border-bottom: 1px solid ${({ $solid }) => ($solid ? 'rgba(35, 48, 71, 0.08)' : 'transparent')};
+  box-shadow: ${({ $solid }) => ($solid ? '0 8px 30px rgba(35, 48, 71, 0.06)' : 'none')};
 `
 
 const Logo = styled.a`
@@ -49,6 +49,7 @@ const LogoImg = styled.img`
   width: 30px;
   height: 30px;
   object-fit: contain;
+  border-radius: 8px;
   transition: transform 0.6s cubic-bezier(0.22, 0.7, 0.2, 1);
 
   ${Logo}:hover & {
@@ -61,7 +62,6 @@ const LogoImg = styled.img`
 `
 
 const LogoText = styled.span`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 1.1rem;
   font-weight: 800;
   color: #233047;
@@ -80,12 +80,11 @@ const NavLinks = styled.div`
 
 const NavLink = styled.a<{ $active?: boolean }>`
   position: relative;
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
   color: #233047;
   text-decoration: none;
-  opacity: ${({ $active }) => ($active ? 1 : 0.7)};
+  opacity: ${({ $active }) => ($active ? 1 : 0.65)};
   transition: opacity 0.2s;
 
   // sublinhado que cresce da esquerda
@@ -95,7 +94,7 @@ const NavLink = styled.a<{ $active?: boolean }>`
     left: 0;
     right: 0;
     bottom: -6px;
-    height: 2px;
+    height: 1.5px;
     border-radius: 2px;
     background: #233047;
     transform-origin: left;
@@ -119,19 +118,23 @@ const NavLink = styled.a<{ $active?: boolean }>`
 `
 
 const NavCta = styled.a`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  color: #c8d1d9;
+  color: #f1f5f9;
   background: #233047;
-  padding: 0.5rem 1.25rem;
-  border-radius: 8px;
+  padding: 0.55rem 1.25rem;
+  border-radius: 10px;
   text-decoration: none;
   transition: transform 0.2s, box-shadow 0.2s;
 
   &:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(35, 48, 71, 0.28);
+    box-shadow: 0 8px 22px rgba(35, 48, 71, 0.25);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #233047;
+    outline-offset: 2px;
   }
 `
 
@@ -186,9 +189,10 @@ const Panel = styled.div<{ $open: boolean }>`
     left: 0;
     right: 0;
     padding: 0.75rem clamp(1.5rem, 5vw, 4rem) 1.5rem;
-    background: #c8d1d9;
-    border-radius: 0 0 20px 20px;
-    box-shadow: 0 20px 40px rgba(35, 48, 71, 0.15);
+    background: #f8f9fb;
+    border-bottom: 1px solid rgba(35, 48, 71, 0.08);
+    border-bottom: 1px solid rgba(35, 48, 71, 0.08);
+    box-shadow: 0 24px 48px rgba(35, 48, 71, 0.12);
     opacity: ${({ $open }) => ($open ? 1 : 0)};
     transform: ${({ $open }) => ($open ? 'translateY(0)' : 'translateY(-10px)')};
     visibility: ${({ $open }) => ($open ? 'visible' : 'hidden')};
@@ -201,19 +205,19 @@ const Panel = styled.div<{ $open: boolean }>`
 `
 
 const PanelLink = styled.a<{ $active?: boolean }>`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 1.05rem;
   font-weight: 600;
   color: #233047;
   text-decoration: none;
   padding: 0.85rem 0.25rem;
-  border-bottom: 1px solid rgba(35, 48, 71, 0.1);
-  opacity: ${({ $active }) => ($active ? 1 : 0.75)};
+  border-bottom: 1px solid rgba(35, 48, 71, 0.08);
+  opacity: ${({ $active }) => ($active ? 1 : 0.7)};
 `
 
 const PanelCta = styled(NavCta)`
   margin-top: 1rem;
   text-align: center;
+  justify-content: center;
   padding: 0.85rem 1.25rem;
   font-size: 1rem;
 `
@@ -263,7 +267,7 @@ export function NavBar() {
   const close = () => setOpen(false)
 
   return (
-    <Nav $solid={scrolled || open} $open={open}>
+    <Nav $solid={scrolled || open} $open={open} data-testid="navbar">
       <Logo href="#" onClick={close}>
         <LogoImg src={orbitIcon} alt="Orbit" />
         <LogoText>Orbit</LogoText>
@@ -271,11 +275,11 @@ export function NavBar() {
 
       <NavLinks>
         {links.map((l) => (
-          <NavLink key={l.id} href={`#${l.id}`} $active={active === l.id}>
+          <NavLink key={l.id} href={`#${l.id}`} $active={active === l.id} data-testid={`navbar-link-${l.id}`}>
             {l.label}
           </NavLink>
         ))}
-        <NavCta href="#cta" data-umami-event="Click botão do NavBar">Entrar em contato</NavCta>
+        <NavCta href="#cta" data-umami-event="Click botão do NavBar" data-testid="navbar-cta">Entrar em contato</NavCta>
       </NavLinks>
 
       <MenuBtn
@@ -283,6 +287,7 @@ export function NavBar() {
         aria-label={open ? 'Fechar menu' : 'Abrir menu'}
         aria-expanded={open}
         aria-controls="menu-mobile"
+        data-testid="navbar-menu-button"
         onClick={() => setOpen((v) => !v)}
       >
         <Bar $pos="top" $open={open} />
@@ -292,11 +297,11 @@ export function NavBar() {
 
       <Panel id="menu-mobile" $open={open}>
         {links.map((l) => (
-          <PanelLink key={l.id} href={`#${l.id}`} $active={active === l.id} onClick={close}>
+          <PanelLink key={l.id} href={`#${l.id}`} $active={active === l.id} onClick={close} data-testid={`navbar-panel-link-${l.id}`}>
             {l.label}
           </PanelLink>
         ))}
-        <PanelCta href="#cta" onClick={close} data-umami-event="Click botão do NavBar">
+        <PanelCta href="#cta" onClick={close} data-umami-event="Click botão do NavBar" data-testid="navbar-panel-cta">
           Entrar em contato
         </PanelCta>
       </Panel>

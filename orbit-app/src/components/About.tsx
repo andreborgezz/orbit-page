@@ -7,7 +7,7 @@ const Section = styled.section`
   scroll-margin-top: 64px;
   position: relative;
   overflow: hidden;
-  background: #c8d1d9;
+  background: #f8f9fb;
   padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
 
   // brilho suave no canto, mesma linguagem das outras seções
@@ -18,7 +18,7 @@ const Section = styled.section`
     left: -10%;
     width: 560px;
     height: 560px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.35), transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent 70%);
     pointer-events: none;
   }
 `
@@ -49,7 +49,7 @@ const PhotoWrap = styled.div<{ $visible: boolean }>`
     inset: 0;
     transform: ${({ $visible }) => ($visible ? 'translate(14px, 14px)' : 'translate(0, 0)')};
     transition: transform 1.1s cubic-bezier(0.22, 0.7, 0.2, 1) 0.5s;
-    border: 1.5px solid rgba(35, 48, 71, 0.25);
+    border: 1.5px solid rgba(35, 48, 71, 0.22);
     border-radius: 24px;
   }
 
@@ -73,7 +73,7 @@ const Photo = styled.div<{ $visible: boolean }>`
   border-radius: 24px;
   overflow: hidden;
   background: #233047;
-  box-shadow: 0 20px 40px rgba(35, 48, 71, 0.25);
+  box-shadow: 0 24px 48px rgba(35, 48, 71, 0.2);
 
   img {
     width: 100%;
@@ -96,41 +96,34 @@ const Photo = styled.div<{ $visible: boolean }>`
 const Bio = styled.div``
 
 const SectionLabel = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #233047;
-  opacity: 0.55;
+  color: #50617a;
   margin: 0 0 0.75rem;
 `
 
 const Title = styled.h2`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  font-size: clamp(1.85rem, 3vw, 2.4rem);
   font-weight: 800;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   color: #233047;
   margin: 0 0 0.35rem;
   line-height: 1.15;
 `
 
 const Role = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 600;
-  color: #233047;
-  opacity: 0.65;
+  color: #50617a;
   margin: 0 0 1.75rem;
 `
 
 const Text = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.75;
-  color: #233047;
-  opacity: 0.78;
+  color: #3d4f6b;
   margin: 0 0 1.25rem;
 `
 
@@ -147,36 +140,36 @@ const Highlights = styled.div`
 
 const Highlight = styled.div`
   ${spotlight}
-  --spot: rgba(255, 255, 255, 0.9);
+  --spot: rgba(35, 48, 71, 0.05);
   height: 100%;
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: #ffffff;
+  border: 1px solid #e5ebf2;
   border-radius: 14px;
   padding: 1rem 1.1rem;
-  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 0 2px 8px rgba(35, 48, 71, 0.04);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(35, 48, 71, 0.2);
+    box-shadow: 0 12px 30px rgba(35, 48, 71, 0.09);
   }
 `
 
 const HighlightValue = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #233047;
   margin: 0 0 0.2rem;
+  line-height: 1.25;
 `
 
 const HighlightLabel = styled.p`
-  font-family: 'Open Sans', system-ui, sans-serif;
   font-size: 0.8rem;
-  line-height: 1.4;
-  color: #233047;
-  opacity: 0.7;
+  line-height: 1.45;
+  color: #50617a;
   margin: 0;
 `
 
@@ -203,11 +196,11 @@ export function About() {
           <Reveal>
             <SectionLabel>Conheça o desenvolvedor por trás da Orbit</SectionLabel>
             <Title>André Borges</Title>
-            <Role>Desenvolvedor e fundador da Orbit</Role>
+            <Role>Desenvolvedor e dono da Orbit</Role>
           </Reveal>
           <Reveal delay={120}>
             <Text>
-              Sou apaixonado por tecnologia e por transformar ideias em sites e sistemas que funcionam de verdade. Programo desde 2023, trabalho como Desenvolvedor na Solve4ME, estou cursando Análise e Desenvolvimento de Sistemas na Faculdade de Engenharia de Sorocaba (Facens) e sou formado em técnico em Desenvolvimento de Sistemas pelo Senai Gaspar Ricardo Júnior.
+              Sou apaixonado por tecnologia e por transformar ideias em sites e sistemas que funcionam de verdade. Programo desde 2023, trabalho como Desenvolvedor, estou cursando Análise e Desenvolvimento de Sistemas na Faculdade de Engenharia de Sorocaba (Facens) e sou formado em técnico em Desenvolvimento de Sistemas pelo Senai Gaspar Ricardo Júnior.
             </Text>
           </Reveal>
           <Reveal delay={200}>
@@ -218,7 +211,7 @@ export function About() {
           <Highlights>
             {highlights.map((h, i) => (
               <Reveal key={h.value} delay={i * 110}>
-                <Highlight onMouseMove={trackPointer}>
+                <Highlight onMouseMove={trackPointer} data-testid={`about-highlight-${i + 1}`}>
                   <HighlightValue>{h.value}</HighlightValue>
                   <HighlightLabel>{h.label}</HighlightLabel>
                 </Highlight>
